@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	float one = 1.00;
+	double two = 1.1933;
+	string three = ("Hi there is my app");
+	char four = '"';
+	char five = '-';
+	int six= 199;
+	char seven = '*';
+	cout <<"- " << one << "." << 0 << 0 << endl;
+	cout << "- " << two << endl << "- " << three << endl;
+	cout << "- " << "\"Hi there is my app\" " << endl;
+	cout << "- " << "*" << endl << "- " << six;
+	return 0;
+}
