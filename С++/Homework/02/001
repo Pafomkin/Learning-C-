@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main()
+ {
+     int a=3;// присвавиваем значение а
+     int b=5;// присвавиваем значение в
+     cout <<"Значение а" << "=" << a << endl;
+     cout <<"Значение b" << "=" << b << endl;
+     a = a+b;// a=3+5=8
+     b = a - b;// b=8-5=3
+     a = a - b ;//a=8-3=5
+     cout <<"Значение a" << "=" << a << endl;
+     cout <<"Значение b" << "=" << b << endl;
+     return 0;
+}
