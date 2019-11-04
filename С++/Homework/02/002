@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+int main()
+{  
+    int a = 54321;
+    int b,c,d,e,i;
+    cout<< "a"<<"="<<a<< endl;
+    cout <<(a-(a % 10000))/10000<< endl;//вывод"5"
+    b=a%10000;
+    cout<<(b-(b%1000))/1000<< endl;//вывод"4"
+    c=b-(b%1000);
+    d=b-c;
+    cout <<(d-(d%100))/100<< endl;//вывод"3"
+    e=(d-(d%100));
+    i=d-e;
+    cout<<(i-(i%10))/10<<endl;//вывод"2"
+    cout <<a %10<< endl;//вывод"1"
+     return 0;
+}
