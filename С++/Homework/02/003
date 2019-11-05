@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+int main()
+{  
+    int C,k;
+   char cMessage = 'C'; // Ваш открытый знак
+   char cKey = 'k';  // Ваш ключ шифрования
+   
+   cout <<"My character: "<< cMessage <<endl;//вывод открытого знака
+   cout <<"Encryption key: "<< cKey <<endl;//выод открытого ключа 
+   int iC=(int)C;// преобразование символа в число через код ASCII
+   int ik=(int)k;
+   
+   int nMessage = static_cast<int>(cMessage);
+   
+   int nKey = static_cast<int>(cKey);
+   
+   long nFirstStepBlock = (nMessage)^(nKey+2);
+   
+   long nSecondStepBlock = (nFirstStepBlock+32);
+   
+   char cEncriptedMessage = static_cast<char>(nSecondStepBlock);
+   
+   cout <<"My encripted character:"<< cEncriptedMessage << endl;
+
+   return 0;
+}
