@@ -1,0 +1,90 @@
+//программа для поиска и удаления файлов Nelegram ,Viber из консоли 
+#include <iostream>                             // для оператора cout
+#include <cstdio>                               // для функции remove
+ 
+int main ()
+{
+
+
+}
+// Для того чтобы удалить папку и все файлы в ней напишите следующую функцию:
+bool DeleteDir(AnsiString DirName)
+{
+TSearchRec sr;
+if (DirName.Length())
+ {
+ if (!FindFirst(DirName+"\\*.*",faAnyFile,sr))
+ do
+  {
+  if (!(sr.Name=="." || sr.Name==".."))// это удалять не надо
+   if (((sr.Attr & faDirectory) == faDirectory ) ||
+   (sr.Attr == faDirectory))// найдена папка
+    {
+    FileSetAttr(DirName+"\\"+sr.Name, faDirectory );// сброс всяких read-only
+    DeleteDir(DirName+"\\"+sr.Name);//рекурсивно удаляем содержимое
+    RemoveDir(DirName + "\\"+sr.Name);// удаляем теперь уже пустую папку
+    }
+    else// иначе найден файл
+    {
+    FileSetAttr(DirName+"\\"+sr.Name, 0);// сброс всяких read-only
+    DeleteFile(DirName+"\\"+sr.Name);// удаляем файл
+    }
+  }
+ while (!FindNext(sr));// ищем опять, пока не найдем все
+ FindClose(sr);
+ }
+RemoveDir(DirName);
+return true;
+}
+//поиск файла
+int search_file(char *dir, char *mask)
+{
+        HANDLE hand = NULL;
+        const char white_list_1[] = "Programm Files";
+        const char white_list_2[] = "Programm Files (x86)";
+        const char white_list_3[] = "Windows";
+        char way_1[MAX_PATH] = { "\0" };
+        char way_2[MAX_PATH] = { "\0" };
+        char way_3[MAX_PATH] = { "\0" };
+        lstrcatA(way_1, dir);
+        lstrcatA(way_2, way_1);
+        lstrcatA(way_1, mask);
+        WIN32_FIND_DATA data_file;
+        hand = FindFirstFile(way_1, &data_file);
+        if (hand != INVALID_HANDLE_VALUE)
+        {
+                do
+                {
+                        if (lstrcmpA(data_file.cFileName, ".") == 0 || lstrcmpA(data_file.cFileName, "..") == 0)
+                        {
+                                continue;
+                        }
+                        if (lstrcmpA(data_file.cFileName, white_list_1) == 0 || lstrcmpA(data_file.cFileName, white_list_2) == 0 || lstrcmp(data_file.cFileName, white_list_3) == 0)
+                        {
+                                continue;
+                        }
+                        if (data_file.dwFileAttributes & FILE_ATTRIBUTE_SYSTEM)
+                        {
+                                continue;
+                        }
+                        way_1[0] = { '\0' };
+                        lstrcatA(way_1, way_2);
+                        lstrcatA(way_1, data_file.cFileName);
+                        if (data_file.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+                        {
+                                lstrcatA(way_1, "\\");
+                                cout << "dir -" << way_1 << endl;
+                                search_file(way_1, mask);
+                        }
+                        else
+                        {
+                                way_3[0] = { '\0' };
+                                lstrcatA(way_3, way_2);
+                                lstrcat(way_3, data_file.cFileName);
+                                cout << "file-" << way_3 << endl;
+                        }
+
+                } while (FindNextFile(hand, &data_file));
+                FindClose(hand);
+        }
+        return (1);
