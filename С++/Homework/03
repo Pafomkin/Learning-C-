@@ -1,4 +1,4 @@
-//программа для поиска и удаления файлов Nelegram ,Viber из консоли 
+//программа для поиска и удаления файлов Telegram ,Viber из консоли 
 #include <iostream>                             // для оператора cout
 #include <cstdio>                               // для функции remove
  
