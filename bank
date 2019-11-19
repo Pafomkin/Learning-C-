@@ -1,0 +1,101 @@
+//Задача:
+//Необходимо разработать программу онлайн - банк.
+//Технические требования :
+//-программа имеет два уровня доступа : Клиент, Сотрудник.
+//- Изначально программа просит ввести логин и пароль, если пароль Qwe123 то программа продолжает работу с доступом Сотрудник, иначе - как Клиент.
+
+//- Клиент может посмотреть свой баланс, добавить сумму к счёту или снять сумму со счета.
+//(Каждая такая транзакция записывается в массив, размер массива можно использовать статический до 100 транзакций)
+
+//- Сотрудник может запросить вывод всех транзакций на экран.
+#include <iostream>
+#include <string>
+using namespace std;
+class Balance
+{
+public:
+	double balance;
+	int operation;
+	double balance()
+	{
+		.balance = 0;
+		cout << "Выберете операцию.Нажмите 1 -для пополнения счёта или 0- для снятия денег." << endl;
+		cin >> operation;
+		if (Balance.operation=1)
+		{
+			cout << "Ввведите сумму для пополнения" << endl;
+			double balance1;
+			cin >> balance1;
+			return Balance.balance = Balance.balance + balance1;
+			cout << "Ваш баланс =" << Balance.balance<< "грн;" << "Сумма пополнения=" << balance1 << "грн." << endl;
+		}
+		else
+		{
+			return 0;
+		}
+		if(number = 0)
+		{
+			cout << "Ввведите сумму для снятия" << endl;
+			double balance2;
+			cin >> balance2;
+			return balance = balance - balance2;
+			cout << "Ваш баланс =" << balance << "грн;" << "Сумма снятия=" << balance2 << "грн." << endl;
+		}
+		else
+		{
+			return 0;
+		}
+		if (balance < 0)
+		{
+			cout << "Недостаточно средств на счету .Пожалуйста ,пополните счёт" << endl;
+		}
+		else
+		{
+			cout << "Неправильный ввод данных.Введите 1 или 0." << endl;
+			return 0;
+		}
+	}
+
+}
+class Transaction
+{protected:
+
+	for id 
+class Client
+{protected:
+	class Balance
+	class Transaction 
+}
+
+protected:
+{
+	void Transaction();
+}
+
+class Bank_pass
+{
+protected:
+	void Bank_pass(string password)
+	{
+		string valid_pass = "Qwe123";
+	}
+	if(password == valid_pass)
+	{
+		cout << "Мы рады Вас приветствовать ,сотрудник!) " << endl;
+		class Employee
+	}
+	else 
+	{
+		cout << " Мы рады Вас приветстовать , клиент !)" << endl;
+		class Client
+
+	}
+
+	int main()
+	{
+	public:
+		class Bank_pass
+			class Client
+			class Employee
+			return 0;
+	}
