@@ -18,6 +18,8 @@ public:
 	void dep(int);	//function to accept amount and add to balance amount
 	void draw(int);	//function to accept amount and subtract from balance amount
 	void report() const;	//function to show data in tabular format
+	//void select_recipient(); //
+	//void sfift();//
 	int retacno() const;	//function to return account number
 	int retdeposit() const;	//function to return balance amount
 	char rettype() const;	//function to return type of account
@@ -119,7 +121,8 @@ int main()
 		cout << "\n\n\t06. ЗАКРЫТЬ СЧЕТ";
 		cout << "\n\n\t07. ИЗМЕНИТЬ СЧЕТ";
 		cout << "\n\n\t08. ВЫХОД";
-		cout << "\n\n\t Выберите ваш вариант(1-8) ";
+		cout << "\n\n\t09.ПЕРЕВОД ДЕНЕГ ДРУГОМУ КЛИЕНТУ";
+		cout << "\n\n\t Выберите ваш вариант(1-9) ";
 		cin >> ch;
 		switch (ch)
 		{
@@ -152,11 +155,14 @@ int main()
 		case '8':
 			cout << "\n\n\tСпасибо за использование системы управления банком";
 			break;
-		default:cout << "\a";
+		case '9':
+		default:cout << "\n\n\tПеревод денежных средств на другой счёт";cin >> num;
+			//select recipient(num);
+			//swift ();
 		}
 		cin.ignore();
 		cin.get();
-	} while (ch != '8');
+	} while (ch != '9');
 	return 0;
 }
 
@@ -326,6 +332,8 @@ void deposit_withdraw(int n, int option)
 			found = true;
 		}
 	}
+//void select recipient(int n);
+     //cout<< "\n\nВведите номер получателя:cin
 	File.close();
 	if (found == false)
 		cout << "\n\n Запись не найдена ";
