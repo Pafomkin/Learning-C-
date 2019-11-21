@@ -1,0 +1,182 @@
+#include <iostream>
+using namespace std;
+
+struct Transaction
+{
+	int Id;
+	string UserName;
+	double Amount;
+	string Type;
+};
+
+
+class Customer
+{
+   public:
+	   string UserName;
+	   string Password;
+	   Transaction* TrxList = new Transaction[100];
+	   
+
+	   void ShowBalance();
+	   void Withdraw();
+	   void Put();
+	   void Swift();
+
+	   Customer() :Index{-1}
+	   {
+	   }
+
+	   ~Customer()
+	   {
+		   delete[] TrxList;
+	   }
+
+  private:
+	double Balance;
+	int Index;
+	Transaction CreateTrx(double Amount, string Type);
+};
+
+Transaction Customer::CreateTrx(double Amount, string Type)
+{
+	Transaction temp;
+	temp.Id = this->Index + 1;
+	temp.UserName = this->UserName;
+	temp.Amount = Amount;
+	temp.Type = Type;
+	this->Index++;
+	return temp;
+}
+
+void Customer::ShowBalance()
+{
+	cout << "Your current balance: " << this->Balance << endl;
+}
+
+void Customer::Withdraw()
+{
+	double Amount=0;
+	cout << "How much would you like to Withdraw ?" << endl;
+	cin >> Amount;
+	if (Amount > this->Balance)
+	{
+		cout << "ERROR! You have not enouth funds." << endl;
+		this->ShowBalance();
+	}
+	else
+	{
+		Balance -= Amount;
+		TrxList[this->Index] = this->CreateTrx(Amount, "Withdrawal");
+	}
+}
+
+void Customer::Put()
+{
+	for (;;)
+	{
+		double Amount;
+		cout << "How much you would like to put ?" << endl;
+		cin >> Amount;
+		if (Amount > 0)
+		{
+			Balance += Amount;
+			TrxList[this->Index] = this->CreateTrx(Amount, "Put");
+			break;
+		}
+		else
+		{
+			cout << "Incorect amount ! Try again !" << endl;
+		}
+	}
+}
+
+
+
+
+
+class Emploer
+{
+public:
+	string UserName;
+	string Password;
+
+	Emploer()
+	{
+	
+	}
+
+	Emploer(string User, string Pass) : UserName{ User }, Password{Pass}
+	{
+	  
+	}
+
+	void ShowTransaction(Customer& CurrentCustomer);
+	Customer CreateClient();
+};
+
+void Emploer::ShowTransaction(Customer& CurrentCustomer)
+{
+	cout << "Transaction for " << CurrentCustomer.UserName <<":"<< endl;
+	for (int i = 0; i < 100; i++)
+	{
+		if ((CurrentCustomer.TrxList[i].Id < 1 && CurrentCustomer.TrxList[i].Id > 100))
+		{
+			cout << "Id: " << CurrentCustomer.TrxList[i].Id;
+			cout << "User: " << CurrentCustomer.TrxList[i].UserName;
+			cout << "Type: " << CurrentCustomer.TrxList[i].Type;
+			cout << "Amount: " << CurrentCustomer.TrxList[i].Amount << endl;
+		}
+	}
+}
+
+Customer Emploer::CreateClient()
+{
+	Customer temp;
+	cout << "Please put Name: ";
+	cin >> temp.UserName;
+	cout << endl;
+	cout << "Please put Password: ";
+	cin >> temp.Password;
+	cout << "User created!" << endl;
+}
+class Bank
+{
+public: 
+	Emploer *Workers = new Emploer[10];
+	Customer *Clients = new Customer[100];
+};
+
+
+int main()
+{
+	Bank* PrivatBank = new Bank();
+
+	PrivatBank->Workers[0] = Emploer("Alex","Aa12345"); 
+
+	string Name;
+	string Pass;
+	cout << "Welcome to Privat !" << endl;
+	cout << "User: ";
+	cin >> Name;
+	cout << endl;
+	cout << "Pass: ";
+	cin >> Pass;
+	if (PrivatBank->Workers[0].UserName == Name && PrivatBank->Workers[0].Password == Pass)
+	{
+		int a;
+		cout << "To show TRX list put 1 or put 2 to Create User" << endl;
+		cin >> a;
+		if (a == 1)
+		{
+			cin >> a;
+			PrivatBank->Workers[0].ShowTransaction(PrivatBank->Clients[a]);
+		}
+		else if (a == 2)
+		{
+		  PrivatBank->Clients[0] = PrivatBank->Workers[0].CreateClient();
+		}
+	}
+
+
+}
