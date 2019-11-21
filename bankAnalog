@@ -25,59 +25,59 @@ public:
 
 void account::create_account()
 {
-	cout<<"\nEnter The account No. :";
-	cin>>acno;
-	cout<<"\n\nEnter The Name of The account Holder : ";
+	cout << "\nВведите номер счёта :";
+	cin >> acno;
+	cout << "\n\nВведите имя владельца счета : ";
 	cin.ignore();
-	cin.getline(name,50);
-	cout<<"\nEnter Type of The account (C/S) : ";
-	cin>>type;
-	type=toupper(type);
-	cout<<"\nEnter The Initial amount(>=500 for Saving and >=1000 for current ) : ";
-	cin>>deposit;
-	cout<<"\n\n\nAccount Created..";
+	cin.getline(name, 50);
+	cout << "\nВведите вид  учетной записи(C/S) : ";
+	cin >> type;
+	type = toupper(type);
+	cout << "\nВведите начальную сумму(> = 50 для сохранения и > = 10 для текущей) : ";
+	cin >> deposit;
+	cout << "\n\n\nСчёт создан..";
 }
 
 void account::show_account() const
 {
-	cout<<"\nAccount No. : "<<acno;
-	cout<<"\nAccount Holder Name : ";
-	cout<<name;
-	cout<<"\nType of Account : "<<type;
-	cout<<"\nBalance amount : "<<deposit;
+	cout << "\nНомер счёта : " << acno;
+	cout << "\nИмя владельца счета : ";
+	cout << name;
+	cout << "\nВид  учетной записи : " << type;
+	cout << "\nСумма остатка : " << deposit;
 }
 
 
 void account::modify()
 {
-	cout<<"\nAccount No. : "<<acno;
-	cout<<"\nModify Account Holder Name : ";
+	cout << "\n№ счёта : " << acno;
+	cout << "\nИзменить имя владельца счета : ";
 	cin.ignore();
-	cin.getline(name,50);
-	cout<<"\nModify Type of Account : ";
-	cin>>type;
-	type=toupper(type);
-	cout<<"\nModify Balance amount : ";
-	cin>>deposit;
+	cin.getline(name, 50);
+	cout << "\nИзменить вид учетной записи : ";
+	cin >> type;
+	type = toupper(type);
+	cout << "\nИзменить сумму баланса : ";
+	cin >> deposit;
 }
 
-	
+
 void account::dep(int x)
 {
-	deposit+=x;
-}
-	
-void account::draw(int x)
-{
-	deposit-=x;
-}
-	
-void account::report() const
-{
-	cout<<acno<<setw(10)<<" "<<name<<setw(10)<<" "<<type<<setw(6)<<deposit<<endl;
+	deposit += x;
 }
 
-	
+void account::draw(int x)
+{
+	deposit -= x;
+}
+
+void account::report() const
+{
+	cout << acno << setw(10) << " " << name << setw(10) << " " << type << setw(6) << deposit << endl;
+}
+
+
 int account::retacno() const
 {
 	return acno;
@@ -109,54 +109,54 @@ int main()
 	int num;
 	do
 	{
-		
-		cout<<"\n\n\n\tMAIN MENU";
-		cout<<"\n\n\t01. NEW ACCOUNT";
-		cout<<"\n\n\t02. DEPOSIT AMOUNT";
-		cout<<"\n\n\t03. WITHDRAW AMOUNT";
-		cout<<"\n\n\t04. BALANCE ENQUIRY";
-		cout<<"\n\n\t05. ALL ACCOUNT HOLDER LIST";
-		cout<<"\n\n\t06. CLOSE AN ACCOUNT";
-		cout<<"\n\n\t07. MODIFY AN ACCOUNT";
-		cout<<"\n\n\t08. EXIT";
-		cout<<"\n\n\tSelect Your Option (1-8) ";
-		cin>>ch;
-		switch(ch)
+		setlocale(LC_ALL, "Russian");
+		cout << "\n\n\n\tГЛАВНОЕ МЕНЮ ";
+		cout << "\n\n\t01. НОВЫЙ АККАУНТ ";
+		cout << "\n\n\t02. СУММА ВКЛАДА";
+		cout << "\n\n\t03. СУММА СНЯТИЯ";
+		cout << "\n\n\t04. ЗАПРОС БАЛАНСА";
+		cout << "\n\n\t05. СПИСОК ВСЕХ СЧЕТОВ";
+		cout << "\n\n\t06. ЗАКРЫТЬ СЧЕТ";
+		cout << "\n\n\t07. ИЗМЕНИТЬ СЧЕТ";
+		cout << "\n\n\t08. ВЫХОД";
+		cout << "\n\n\t Выберите ваш вариант(1-8) ";
+		cin >> ch;
+		switch (ch)
 		{
 		case '1':
 			write_account();
 			break;
 		case '2':
-			cout<<"\n\n\tEnter The account No. : "; cin>>num;
+			cout << "\n\n\tВведите номер счета : "; cin >> num;
 			deposit_withdraw(num, 1);
 			break;
 		case '3':
-			cout<<"\n\n\tEnter The account No. : "; cin>>num;
+			cout << "\n\n\tВведите номер счета : "; cin >> num;
 			deposit_withdraw(num, 2);
 			break;
-		case '4': 
-			cout<<"\n\n\tEnter The account No. : "; cin>>num;
+		case '4':
+			cout << "\n\n\tВведите номер счета : "; cin >> num;
 			display_sp(num);
 			break;
 		case '5':
 			display_all();
 			break;
 		case '6':
-			cout<<"\n\n\tEnter The account No. : "; cin>>num;
+			cout << "\n\n\tВведите номер счета : "; cin >> num;
 			delete_account(num);
 			break;
-		 case '7':
-			cout<<"\n\n\tEnter The account No. : "; cin>>num;
+		case '7':
+			cout << "\n\n\tВведите номер счета : "; cin >> num;
 			modify_account(num);
 			break;
-		 case '8':
-			cout<<"\n\n\tThanks for using bank managemnt system";
+		case '8':
+			cout << "\n\n\tСпасибо за использование системы управления банком";
 			break;
-		 default :cout<<"\a";
+		default:cout << "\a";
 		}
 		cin.ignore();
 		cin.get();
-	}while(ch!='8');
+	} while (ch != '8');
 	return 0;
 }
 
@@ -166,9 +166,9 @@ void write_account()
 {
 	account ac;
 	ofstream outFile;
-	outFile.open("account.dat",ios::binary|ios::app);
+	outFile.open("account.dat", ios::binary | ios::app);
 	ac.create_account();
-	outFile.write(reinterpret_cast<char *> (&ac), sizeof(account));
+	outFile.write(reinterpret_cast<char*> (&ac), sizeof(account));
 	outFile.close();
 }
 
@@ -176,60 +176,60 @@ void write_account()
 void display_sp(int n)
 {
 	account ac;
-	bool flag=false;
+	bool flag = false;
 	ifstream inFile;
-	inFile.open("account.dat",ios::binary);
-	if(!inFile)
+	inFile.open("account.dat", ios::binary);
+	if (!inFile)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout << "Файл не может быть открыт!Нажмите любую кнопку...";
 		return;
 	}
-	cout<<"\nBALANCE DETAILS\n";
+	cout << "\nДЕТАЛИ БАЛАНСАn";
 
-    	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
+	while (inFile.read(reinterpret_cast<char*> (&ac), sizeof(account)))
 	{
-		if(ac.retacno()==n)
+		if (ac.retacno() == n)
 		{
 			ac.show_account();
-			flag=true;
+			flag = true;
 		}
 	}
 	inFile.close();
-	if(flag==false)
-		cout<<"\n\nAccount number does not exist";
+	if (flag == false)
+		cout << "\n\nНомер счета не существует";
 }
 
 
 
 void modify_account(int n)
 {
-	bool found=false;
+	bool found = false;
 	account ac;
 	fstream File;
-	File.open("account.dat",ios::binary|ios::in|ios::out);
-	if(!File)
+	File.open("account.dat", ios::binary | ios::in | ios::out);
+	if (!File)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout << "Файл не может быть открыт!Нажмите любую кнопку...";
 		return;
 	}
-	while(!File.eof() && found==false)
+	while (!File.eof() && found == false)
 	{
-		File.read(reinterpret_cast<char *> (&ac), sizeof(account));
-		if(ac.retacno()==n)
+		File.read(reinterpret_cast<char*> (&ac), sizeof(account));
+		if (ac.retacno() == n)
 		{
 			ac.show_account();
-			cout<<"\n\nEnter The New Details of account"<<endl;
+			cout << "\n\nВведите новые данные счета" << endl;
 			ac.modify();
-			int pos=(-1)*static_cast<int>(sizeof(account));
-			File.seekp(pos,ios::cur);
-			File.write(reinterpret_cast<char *> (&ac), sizeof(account));
-			cout<<"\n\n\t Record Updated";
-			found=true;
-		  }
+			int pos = (-1) * static_cast<int>(sizeof(account));
+			File.seekp(pos, ios::cur);
+			File.write(reinterpret_cast<char*> (&ac), sizeof(account));
+			cout << "\n\n\t Запись обновлена";
+			found = true;
+		}
 	}
 	File.close();
-	if(found==false)
-		cout<<"\n\n Record Not Found ";
+	if (found == false)
+		cout << "\n\nЗапись не найдена ";
 }
 
 
@@ -238,26 +238,26 @@ void delete_account(int n)
 	account ac;
 	ifstream inFile;
 	ofstream outFile;
-	inFile.open("account.dat",ios::binary);
-	if(!inFile)
+	inFile.open("account.dat", ios::binary);
+	if (!inFile)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout << "Файл не может быть открыт!Нажмите любую кнопку...";
 		return;
 	}
-	outFile.open("Temp.dat",ios::binary);
-	inFile.seekg(0,ios::beg);
-	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
+	outFile.open("Temp.dat", ios::binary);
+	inFile.seekg(0, ios::beg);
+	while (inFile.read(reinterpret_cast<char*> (&ac), sizeof(account)))
 	{
-		if(ac.retacno()!=n)
+		if (ac.retacno() != n)
 		{
-			outFile.write(reinterpret_cast<char *> (&ac), sizeof(account));
+			outFile.write(reinterpret_cast<char*> (&ac), sizeof(account));
 		}
 	}
 	inFile.close();
 	outFile.close();
 	remove("account.dat");
-	rename("Temp.dat","account.dat");
-	cout<<"\n\n\tRecord Deleted ..";
+	rename("Temp.dat", "account.dat");
+	cout << "\n\n\tЗапись удалена ..";
 }
 
 
@@ -265,17 +265,17 @@ void display_all()
 {
 	account ac;
 	ifstream inFile;
-	inFile.open("account.dat",ios::binary);
-	if(!inFile)
+	inFile.open("account.dat", ios::binary);
+	if (!inFile)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout << "Файл не может быть открыт!Нажмите любую кнопку...";
 		return;
 	}
-	cout<<"\n\n\t\tACCOUNT HOLDER LIST\n\n";
-	cout<<"====================================================\n";
-	cout<<"A/c no.      NAME           Type  Balance\n";
-	cout<<"====================================================\n";
-	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
+	cout << "\n\n\t\tСПИСОК ДЕРЖАТЕЛЕЙ СЧЕТА\n\n";
+	cout << "====================================================\n";
+	cout << "№ СЧЁТА       ИМЯ          ТИП    БАЛАНС\n";
+	cout << "====================================================\n";
+	while (inFile.read(reinterpret_cast<char*> (&ac), sizeof(account)))
 	{
 		ac.report();
 	}
@@ -286,47 +286,47 @@ void display_all()
 void deposit_withdraw(int n, int option)
 {
 	int amt;
-	bool found=false;
+	bool found = false;
 	account ac;
 	fstream File;
-	File.open("account.dat", ios::binary|ios::in|ios::out);
-	if(!File)
+	File.open("account.dat", ios::binary | ios::in | ios::out);
+	if (!File)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout << "Файл не может быть открыт!Нажмите любую кнопку...";
 		return;
 	}
-	while(!File.eof() && found==false)
+	while (!File.eof() && found == false)
 	{
-		File.read(reinterpret_cast<char *> (&ac), sizeof(account));
-		if(ac.retacno()==n)
+		File.read(reinterpret_cast<char*> (&ac), sizeof(account));
+		if (ac.retacno() == n)
 		{
 			ac.show_account();
-			if(option==1)
+			if (option == 1)
 			{
-				cout<<"\n\n\tTO DEPOSITE AMOUNT ";
-				cout<<"\n\nEnter The amount to be deposited";
-				cin>>amt;
+				cout << "\n\n\tПОЛОЖИТЬ СУММУ НА СЧЁТ ";
+				cout << "\n\nВведите сумму для депозита";
+				cin >> amt;
 				ac.dep(amt);
 			}
-			if(option==2)
+			if (option == 2)
 			{
-				cout<<"\n\n\tTO WITHDRAW AMOUNT ";
-				cout<<"\n\nEnter The amount to be withdraw";
-				cin>>amt;
-				int bal=ac.retdeposit()-amt;
-				if((bal<500 && ac.rettype()=='S') || (bal<1000 && ac.rettype()=='C'))
-					cout<<"Insufficience balance";
+				cout << "\n\n\tВЫВЕСТИ СУММУ ";
+				cout << "\n\nВведите сумму для вывода";
+				cin >> amt;
+				int bal = ac.retdeposit() - amt;
+				if ((bal < 500 && ac.rettype() == 'S') || (bal < 1000 && ac.rettype() == 'C'))
+					cout << "Недостаток баланса";
 				else
 					ac.draw(amt);
 			}
-			int pos=(-1)*static_cast<int>(sizeof(ac));
-			File.seekp(pos,ios::cur);
-			File.write(reinterpret_cast<char *> (&ac), sizeof(account));
-			cout<<"\n\n\t Record Updated";
-			found=true;
-	       }
-         }
+			int pos = (-1) * static_cast<int>(sizeof(ac));
+			File.seekp(pos, ios::cur);
+			File.write(reinterpret_cast<char*> (&ac), sizeof(account));
+			cout << "\n\n\t Запись обновлена";
+			found = true;
+		}
+	}
 	File.close();
-	if(found==false)
-		cout<<"\n\n Record Not Found ";
+	if (found == false)
+		cout << "\n\n Запись не найдена ";
 }
