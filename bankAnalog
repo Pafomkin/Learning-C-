@@ -94,9 +94,6 @@ char account::rettype() const
 }
 
 
-//***************************************************************
-//    	function declaration
-//****************************************************************
 void write_account();	//function to write record in binary file
 void display_sp(int);	//function to display account details given by user
 void modify_account(int);	//function to modify record of file
